@@ -27,12 +27,14 @@ namespace WorkerService
                 {
                     services.AddAccessTokenManagement(options =>
                     {
-                        options.Client.Clients.Add("identityserver", new ClientCredentialsTokenRequest
+                        options.Client.Clients.Add("identityserver", new PasswordTokenRequest
                         {
                             Address = "https://demo.identityserver.io/connect/token",
                             ClientId = "m2m.short",
                             ClientSecret = "secret",
-                            Scope = "api"
+                            Scope = "api",
+                            UserName = "",
+                            Password = ""
                         });
                     });
 

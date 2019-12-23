@@ -47,44 +47,12 @@ namespace IdentityModel.AspNetCore.AccessTokenManagement
         /// <inheritdoc/>
         public async Task<TokenResponse> RequestClientAccessToken(string clientName = AccessTokenManagementDefaults.DefaultTokenClientName)
         {
-            ClientCredentialsTokenRequest requestDetails;
-
-            // if a named client configuration was passed in, try to load it
-            if (string.Equals(clientName, AccessTokenManagementDefaults.DefaultTokenClientName))
+            PasswordTokenRequest requestDetails;
+            if (!_accessTokenManagementOptions.Client.Clients.TryGetValue(clientName, out requestDetails))
             {
-                // if only one client configuration exists, load that
-                if (_accessTokenManagementOptions.Client.Clients.Count == 1)
-                {
-                    requestDetails = _accessTokenManagementOptions.Client.Clients.First().Value;
-                }
-                // otherwise fall back to the scheme configuration
-                else
-                {
-                    var (options, configuration) = await GetOpenIdConnectSettingsAsync(_accessTokenManagementOptions.User.Scheme);
-
-                    requestDetails = new ClientCredentialsTokenRequest()
-                    {
-                        Address = configuration.TokenEndpoint,
-
-                        ClientId = options.ClientId,
-                        ClientSecret = options.ClientSecret
-                    };
-
-                    if (!string.IsNullOrWhiteSpace(_accessTokenManagementOptions.Client.Scope))
-                    {
-                        requestDetails.Scope = _accessTokenManagementOptions.Client.Scope;
-                    }
-                }
+                throw new InvalidOperationException($"No access token client configuration found for client: {clientName}");
             }
-            else
-            {
-                if (!_accessTokenManagementOptions.Client.Clients.TryGetValue(clientName, out requestDetails))
-                {
-                    throw new InvalidOperationException($"No access token client configuration found for client: {clientName}");
-                }
-            }
-
-            return await _httpClient.RequestClientCredentialsTokenAsync(requestDetails);
+            return await _httpClient.RequestPasswordTokenAsync(requestDetails);
         }
 
         /// <inheritdoc/>

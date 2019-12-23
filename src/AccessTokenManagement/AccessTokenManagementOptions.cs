@@ -68,7 +68,7 @@ namespace IdentityModel.AspNetCore.AccessTokenManagement
             /// <summary>
             /// Configures named client configurations for requesting client tokens.
             /// </summary>
-            public IDictionary<string, ClientCredentialsTokenRequest> Clients { get; set; } = new Dictionary<string, ClientCredentialsTokenRequest>();
+            public IDictionary<string, PasswordTokenRequest> Clients { get; set; } = new Dictionary<string, PasswordTokenRequest>();
         }
     }
 }
