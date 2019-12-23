@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>Dominick Baier;Brock Allen</Authors>
+    <Authors>Dominick Baier;Brock Allen;Janis Pommers</Authors>
     <Description>OpenID Connect &amp; OAuth 2.0 client library for ASP.NET Core</Description>
-    <PackageId>IdentityModel.AspNetCore</PackageId>
+    <PackageId>ELieta.IdentityModel.AspNetCore</PackageId>
     <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;IdentityServer;ASP.NET Core</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
-    <PackageProjectUrl>https://github.com/IdentityModel/IdentityModel.AspNetCore</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/jpommers/IdentityModel.AspNetCore</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
@@ -43,6 +43,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <Version>1.0.1</Version>
+    <Product>ELieta.IdentityModel.AspNetCore</Product>
   </PropertyGroup>
 
 </Project>
